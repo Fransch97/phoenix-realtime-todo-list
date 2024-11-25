@@ -1,0 +1,21 @@
+<div id="todo-list" phx-hook="TodoList">
+  <ul>
+    <%= for item <- @todos do %>
+      <li id={"todo-#{item.id}"}>
+        <input type="checkbox" phx-click="toggle_complete" phx-value-id={item.id} checked={item.completed} />
+        <%= item.title %>
+      </li>
+    <% end %>
+  </ul>
+  <form phx-submit="add_todo">
+    <input name="title" placeholder="New To-Do" />
+    <button type="submit">Add</button>
+  </form>
+</div>
+<div id="mouse-tracking" phx-update="append">
+  <%= for {id, %{x: x, y: y}} <- @mouse_positions do %>
+    <div style={"position: absolute; left: #{x}px; top: #{y}px;"}>
+      User <%= id %>
+    </div>
+  <% end %>
+</div>
